@@ -1,6 +1,7 @@
 ﻿#include "postfix.h"
 #include "stack.h"
 
+
 string TPostfix::ToPostfix()
 {
 	TStack<char> StackOper(LenInf); //стэк операций
