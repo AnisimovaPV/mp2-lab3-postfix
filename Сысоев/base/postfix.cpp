@@ -13,12 +13,7 @@ string TPostfix::ToPostfix()
 		{
 			if (StackOper.IsEmpty()) 
 				StackOper.Push(infix[i]) ;
-			else if ((!StackOper.IsEmpty()) && (Priority(StackOper.GetTop()) > Priority(infix[i])))
-			{
-				postfix+= StackOper.Pop();
 			
-			StackOper.Push(infix[i]);
-			}
 			else if (Priority(StackOper.GetTop()) == Priority(infix[i]))
 			{
 				postfix += StackOper.Pop();
@@ -27,6 +22,19 @@ string TPostfix::ToPostfix()
 			else if (Priority(StackOper.GetTop()) < Priority(infix[i]))
 			{
 				StackOper.Push(infix[i]);
+			}
+			else
+			{
+				if ((Priority(StackOper.GetTop()) > Priority(infix[i])))
+				{
+					while ((!StackOper.IsEmpty()))
+				{
+					postfix += StackOper.Pop();
+				}
+				StackOper.Push(infix[i]);
+
+				}
+				
 			}
 		}
 		else if (infix[i] == ')')
