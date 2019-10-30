@@ -1,6 +1,7 @@
 #include "postfix.cpp"
 #include <gtest.h>
 
+
 TEST(TPostfix, can_create_postfix)
 {
 	ASSERT_NO_THROW(TPostfix p());
@@ -46,6 +47,31 @@ TEST(TPostfix, can_count_length_infix_form)
 	TPostfix p("(a+b)*c");
 	int res = p.GetLen();
 	EXPECT_EQ(7, res);
+}
+TEST(TPostfix, can_count_variables)
+{
+	TPostfix p("(a+b+c)*d");
+	int res = p.CountVal();
+	EXPECT_EQ(4, res);
+}
+TEST(TPostfix, can_count_different_variables)
+{
+	TPostfix p("a+b+a+b+a");
+	int res = p.CountVal();
+	EXPECT_EQ(2, res);
+}
+TEST(TPostfix, can_calculate_in_postfix_if_variables_ecual)
+{
+	TPostfix p("a+a+a");
+	p.ToPostfix();
+	int CntVal = p.CountVal();
+	double *res = new double[CntVal];
+	for (int i = 0; i < CntVal; i++)
+	{
+		res[i] = 2;
+	}
+	double tmp = p.Calculate(res);
+	EXPECT_TRUE(tmp == 6);
 }
 TEST(TPostfix, can_count_the_amount_variables)
 {

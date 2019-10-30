@@ -1,6 +1,7 @@
 ﻿#ifndef __POSTFIX_H__
 #define __POSTFIX_H__
 
+
 #include <string>
 #include "stack.h"
 
@@ -24,6 +25,7 @@ public:
   double Calculate(double *_MasNumb);  // Ввод переменных, вычисление по постфиксной форме
   int Priority(char elem);             //приоритет 
   int GetLen();                        //получить длину
-  int CountVal();                      // посчитать  кол-во переменных
+  int CountVal();                      // посчитать  кол-во разных переменных
+  int GetInfixVar();                   // количество всех переменных
 };
 #endif
